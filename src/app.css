@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	button {
+		@apply border bg-gray-200 border-black;
+	}
+}
+
+@layer components {
+	.retro {
+		@apply py-0.5 px-1;
+		border-top: 1.5px solid #fff;
+		border-left: 1.5px solid #fff;
+		border-bottom: 1.5px solid rgba(0, 0, 0, 0.508);
+		border-right: 1.5px solid rgba(0, 0, 0, 0.508);
+	}
+}
