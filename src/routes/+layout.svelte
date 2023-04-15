@@ -35,8 +35,11 @@
 			}
 		}
 
-		window.ethereum.on('disconnect', () => {
-			userAddr.set(null);
+		window.ethereum.on('accountsChanged', async () => {
+			const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+			if (accounts.length == 0) {
+				userAddr.set(null);
+			}
 		});
 
 		authCookie.set(getCookie('auth'));
