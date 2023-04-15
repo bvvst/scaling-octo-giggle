@@ -45,10 +45,12 @@
 	async function connectWallet() {
 		if (typeof window.ethereum !== 'undefined') {
 			try {
-				await window.ethereum.request({ method: 'eth_requestAccounts' });
-				signer = await provider.getSigner();
-				a = await signer.getAddress();
-				userAddr.set(a);
+				const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+				if (accounts.length > 0) {
+					signer = await provider.getSigner();
+					console.log(signer);
+					userAddr.set(accounts[0]);
+				}
 			} catch (error) {
 				console.error('Error connecting to MetaMask:', error);
 			}
@@ -121,7 +123,7 @@
 			{/if}
 		{:else}
 			<button on:click={connectWallet}>
-				<div class="retro">connect</div>
+				<div class="retro">connect wallet</div>
 			</button>
 		{/if}
 	</div>
